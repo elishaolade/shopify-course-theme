@@ -1,0 +1,27 @@
+<header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{{ routes.root_url }}">{{ shop.name }}</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        {% for link in linklists.main-menu.links %}
+            {% assign child_list_handle = link.title | handleize %}
+            {% if linklists[child_list_handle].links != blank %}
+                <a class="p-2 text-dark" href="{{ link.url }}">{{ link.title }}</a>
+                [{% for childlink in linklists[child_list_handle].links %}
+                    <a href="{{ childlink.url }}" class="p-2 text-dark">{{ childlink.title | escape }}</a>
+                {% endfor %}]
+            {% else %}
+          <a href="{{ link.url }}" class="p-2 text-dark">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+      <a href="/cart">cart</a>
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+            <a href="/account">account</a>
+            {{ 'log out'| customer_logout_link }}
+        {% else %}
+            <a href="/account/login" class="p-2 text-dark">Login</a>
+            <a class="btn btn-outline-primary" href="{{ routes.account_register_url }}">Sign up</a>
+        {% endif %}
+    {% endif %}
+    </nav>
+</header>
+    

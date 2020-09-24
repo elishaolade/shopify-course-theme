@@ -1,0 +1,223 @@
+<div class="container">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">{{ section.settings.header }}</h1>
+      <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+    </div>
+      <div class="card-deck mb-3 text-center">
+        {% for block in section.blocks %}
+          {% assign description_list = block.settings.tier_description | split: ", " %}
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">{{ block.settings.tier_name }}</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">${{ block.settings.tier_price }} <small class="text-muted">/ {{ block.settings.tier_date }}</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                {% for item in description_list %}
+                  </li>{{ item }}</lit>   
+                {% endfor %}
+              </ul>
+              <a href="{{block.settings.tier_button_link}}" type="button" class="{% if block.settings.tier_button_style == "outline" %} btn-outline-primary {% else %} btn-primary {%endif%}}">{{ block.settings.tier_button_text}}</a>
+            </div>
+          </div>
+        {% endfor%}
+      </div>
+    </div>
+    {% schema %}
+    {
+      "name": "Pricing",
+      "class": "section-pricing",
+      "settings": [{
+          "id": "header",
+          "type": "text",
+          "label": "Header",
+          "default": "Hello World"
+        },
+        {
+          "id": "Description",
+          "type": "textarea",
+          "label": "Section Description",
+          "default": "Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization."
+        }
+      ],
+      "blocks": [{
+        "type": "tier",
+        "name": "Tier",
+        "limit": 4,
+        "settings": [{
+            "id": "tier_name",
+            "type": "text",
+            "label": "Tier Name",
+            "default": "Free"
+          },
+          {
+            "id": "tier_price",
+            "type": "text",
+            "label": "Tier Price",
+            "default": "0"
+          },
+          {
+            "id": "tier_date",
+            "type": "select",
+            "label": "Tier Date",
+            "options": [{
+                "value": "dy",
+                "label": "Daily"
+              },
+              {
+                "value": "mo",
+                "label": "Monthly"
+              },
+              {
+                "value": "yr",
+                "label": "Yearly"
+              }
+            ],
+            "default": "mo"
+          },
+          {
+            "id": "tier_description",
+            "type": "textarea",
+            "label": "Tier Description",
+            "info": "Seperate by a comma",
+            "default": "10 users included, 2 GB of storage, Email support, Help center access",
+            "placeholder": "example"
+          },
+          {
+            "id": "tier_button_style",
+            "type": "select",
+            "label": "Button Style",
+            "options": [{
+                "value": "outline",
+                "label": "Outline"
+              },
+              {
+                "value": "filled",
+                "label": "filled"
+              }
+            ],
+            "default": "outline"
+          },
+          {
+            "id": "tier_button_text",
+            "type": "text",
+            "label": "Button Text",
+            "default": "Sign Up"
+          },
+          {
+            "id": "tier_button_link",
+            "type": "text",
+            "label": "Tier Link URL",
+            "default": "#"
+          }
+        ]
+      }],
+      "presets": [
+        {
+          "category":"Custom content",
+          "name":"Pricing",
+          "settings": { 
+            "Description": "Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization."
+          },
+          "blocks":[
+            {
+              "type":"tier",
+              "settings":{
+                "tier_name":"Free"
+              }
+            },
+            {
+              "type":"tier",
+              "settings":{
+                "tier_name":"Monthly"
+              }
+            },
+            {
+              "type":"tier",
+              "settings":{
+                "tier_name":"Yearly"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    {% endschema %}
+
+    <!-- "blocks": [{
+      "type": "tier",
+      "name": "Tier",
+      "limit": 4,
+      "settings": [
+        {
+          "id": "tier_name",
+          "type": "text",
+          "label": "Tier Name",
+          "default": "Free"
+        },
+        {
+          "id": "tier_price",
+          "type": "text",
+          "label": "Tier Name",
+          "default": "0"
+        },
+        {
+          "id": "tier_date",
+          "type": "select",
+          "label": "Tier Date",
+          "options": [
+            {
+              "value":"dy",
+              "label":"Daily"
+            },
+            {
+              "value":"mo",
+              "label":"Monthly"
+            },
+            {
+              "value": "yr",
+              "label": "Yearly"
+            }
+          ],
+          "default":"mo"
+        },
+        {
+          "id":"tier_description",
+          "type":"textarea",
+          "label":"Tier Description",
+          "info":"Seperate by a comma",
+          "default":"10 users included, 2 GB of storage, Email support, Help center access",
+          "placeholder":"example"
+        },
+        {
+          "id":"tier_button_style",
+          "type":"select",
+          "label":"Button Style", "id": "tier_price",
+          "type": "text",
+          "label": "Tier Name",
+          "default": "0"
+            {
+              "value":"outline",
+              "label":"Outline"
+            },
+            {
+              "value":"filled",
+              "label":"filled"
+            }
+          ],
+          "default":"outline"
+        },
+        {
+          "id":"tier_button_text",
+          "type":"text",
+          "label":"Button Text",
+          "default":"Sign Up",
+        },
+        {
+          "id":"tier_button_link",
+          "type":"text",
+          "label":"Tier Link URL",
+          "default":"#",
+        },
+      ]
+    }] -->

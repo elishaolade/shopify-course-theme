@@ -1,0 +1,33 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": { 
+      "color_text": "#ff0000",
+      "sections": {
+        "pricing": {
+          "type": "pricing",
+          "settings": {
+            "title": "Light Pricing"
+          }
+        }
+      },
+      "content_for_index": [
+        "pricing"
+      ]
+     },
+     "Dark":{
+       "color_text":"ffffff",
+       "sections": {
+          "pricing": {
+            "type":"pricing",
+            "settings": {
+              "title":"Dark Pricing"
+            }
+          }
+       },
+       "content_for_index": [
+         ""
+       ]
+     }
+  }
+}
